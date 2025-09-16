@@ -480,6 +480,79 @@ body {
     background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
 }
 
+/* Subjects Section */
+.subjects {
+    padding: 6rem 0;
+    background: var(--bg-primary);
+}
+
+.subjects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.subject-category {
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px var(--shadow-color);
+    border: 1px solid var(--border-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.subject-category:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.subject-category h3 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 1.5rem;
+    text-align: center;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.subject-items {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.subject-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    background: var(--bg-secondary);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    border-left: 4px solid transparent;
+}
+
+.subject-item:hover {
+    background: #e8ecff;
+    transform: translateX(10px);
+    border-left-color: #667eea;
+}
+
+.subject-item i {
+    font-size: 1.2rem;
+    color: #667eea;
+    width: 20px;
+    text-align: center;
+}
+
+.subject-item span {
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
 .skills-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -727,6 +800,22 @@ body {
     min-height: 120px;
 }
 
+.form-note {
+    margin-top: 1rem;
+    text-align: center;
+    color: var(--text-muted);
+}
+
+.form-note a {
+    color: #667eea;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.form-note a:hover {
+    text-decoration: underline;
+}
+
 /* Footer */
 .footer {
     background: var(--bg-tertiary);
@@ -852,6 +941,14 @@ body {
     }
 
     .skills-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .subjects-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .subject-items {
         grid-template-columns: 1fr;
     }
 

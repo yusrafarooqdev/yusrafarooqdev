@@ -75,6 +75,11 @@ document.addEventListener('DOMContentLoaded', () => {
     animateElements.forEach(el => observer.observe(el));
 });
 
+// Initialize EmailJS
+(function() {
+    emailjs.init("RzJ2f3KacDNfzS5Bt");
+})();
+
 // Contact form handling
 const contactForm = document.getElementById('contactForm');
 if (contactForm) {
@@ -98,14 +103,34 @@ if (contactForm) {
             return;
         }
         
-        // Simulate form submission (replace with actual form handling)
-        showNotification('Thank you for your message! I\'ll get back to you soon.', 'success');
+        // Show loading state
+        const submitBtn = this.querySelector('button[type="submit"]');
+        const originalText = submitBtn.innerHTML;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+        submitBtn.disabled = true;
         
-        // Reset form
-        this.reset();
-        
-        // In a real application, you would send this data to your server
-        console.log('Form submitted:', { name, email, message });
+        // Send email using EmailJS
+        emailjs.send("service_l72gznh", "template_c21upwh", {
+            from_name: name,
+            from_email: email,
+            to_name: "Yusra Farooq",
+            to_email: "yusrafarooqdev@gmail.com",
+            message: message,
+            reply_to: email
+        })
+        .then(function(response) {
+            console.log('SUCCESS!', response.status, response.text);
+            showNotification('Thank you for your message! I\'ll get back to you soon.', 'success');
+            contactForm.reset();
+        }, function(error) {
+            console.log('FAILED...', error);
+            showNotification('Sorry, there was an error sending your message. Please try again or email me directly at yusrafarooqdev@gmail.com', 'error');
+        })
+        .finally(function() {
+            // Reset button state
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+        });
     });
 }
 
